@@ -1,0 +1,114 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-position: top;
+    background-image: url("background.jpg");
+    font-family: "Arial";
+}
+
+.registrationBox {
+    width: 300px;
+    padding: 60px 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fdf4e3;
+    text-align: center;
+    border-radius: 25px;
+}
+
+.registrationBox h1 {
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 50px;
+    color: #363237;
+}
+
+.bi-shop {
+    position: relative;
+    margin: 20px auto;
+}
+
+.registrationBox input[type = "text"],.registrationBox input[type = "password"] {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #af4425;
+    padding: 14px 10px;
+    width: 200px;
+    outline: none;
+    border-radius: 24px;
+    transition: 0.25s;
+    color: #363237;
+}
+
+.registrationBox input[type = "text"]:focus,.registrationBox input[type = "password"]:focus {
+    width: 280px;
+    border-color: #785a46;
+    background: #ffccbb;
+}
+
+.registrationBox input[type = "submit"] {
+    border: 0;
+    background: none;
+    display: block;
+    margin-top: 20px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 10px;
+    text-align: center;
+    border: 2px solid #662e1c;
+    padding: 14px 40px;
+    outline: none;
+    border-radius: 24px;
+    transition: 0.25s;
+    color: #363237;
+}
+
+.registrationBox input[type = "submit"]:hover {
+    background: #662e1c;
+    color: white;
+}
+
+.remember_me {
+    display: inline;
+    font-size: 12px;
+    color: #363237;
+    margin-bottom: 10px;
+}
+
+.notification {
+    font-size: 12px;
+    color: #363237;
+    margin-bottom: 10px;
+    margin-top: 20px;
+
+}
+
+.notification a:link {
+    color: #363237;
+    text-decoration: none;
+
+}
+
+.notification a:hover {
+    color: #357898;
+}
+
+.anonymous {
+    font-size: 12px;
+    color: #363237;
+    margin-top: 10px;
+}
+
+.anonymous a:link {
+    color: #363237;
+    text-decoration: none;
+}
+
+.anonymous a:hover {
+    color: #357898;
+}
