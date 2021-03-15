@@ -1,23 +1,19 @@
 package ru.itis.restoke.servlets.helpers;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.io.IOException;
+import org.springframework.ui.*;
+import javax.servlet.http.*;
 
 public class HeaderFtlHelper {
-    public static void toSetHidden(HttpServletRequest req) {
-        HttpSession httpSession = req.getSession();
+    public static void toSetHidden(HttpSession httpSession, Model model) {
         if (httpSession.getAttribute("user_id") == null) {
-            req.setAttribute("hidden", "hidden");
+            model.addAttribute("hidden", "hidden");
         }
         else {
-            req.setAttribute("hidden", "");
+            model.addAttribute("hidden", "");
         }
     }
 
-    public static void toSetEmptyHidden(HttpServletRequest req) throws IOException, ServletException {
-        req.setAttribute("hidden", "");
+    public static void toSetEmptyHidden(Model model) {
+        model.addAttribute("hidden", "");
     }
 }
