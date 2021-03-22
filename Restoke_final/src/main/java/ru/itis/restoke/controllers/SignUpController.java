@@ -33,18 +33,17 @@ public class SignUpController {
         if (email != null && password != null) {
 
             // это регулярки для Email
-            if (!Pattern.compile(".*@.*").matcher(email).matches())
-            {
+            if (!Pattern.compile(".*@.*").matcher(email).matches()) {
                 model.addAttribute("varning", "invalid email address");
                 return "signup_window";
 
                 // Ниже регулярка для пароля
             } else if (!Pattern.compile("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\\s).*$").matcher(password).matches()) {
-                model.addAttribute("varning", "invalid login. Login must contain  upper and lowercase and numbers");
+                model.addAttribute("varning", "invalid password. Login must contain  upper and lowercase and numbers");
                 return "signup_window";
             } else {
 
-                if (userService.verifyUser(userService.getUserByEmail(email).get(0), password)) {
+                if (userService.getUserByEmail(email).size() != 0) {
                     model.addAttribute("varning", "This email address has already been registered. ");
                     return "signup_window";
                 } else {
@@ -60,6 +59,7 @@ public class SignUpController {
                 }
             }
         } else {
+            model.addAttribute("varning", "");
             return "signup_window";
         }
     }

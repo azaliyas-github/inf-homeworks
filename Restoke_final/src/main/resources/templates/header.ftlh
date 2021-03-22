@@ -12,15 +12,16 @@
         <a href="/main"><h4>Restoke.</h4></a>
     </div>
     <ul class="nav-links">
+        <form  name="searchForm" action="/searching_page" method="get">
+            <li class="icon_list">
+                <div class="search-box">
+                    <input name="search" type="search" class="search-txt" value="" placeholder="Search">
+                </div>
+            </li>
+        </form>
 
-        <li class="icon_list">
-            <div class="search-box">
-                <input type="text" class="search-txt" value="${searchQuery}" placeholder="Search">
-                <a href="#" class="search-btn"><i class="fa fa-search" aria-hidden="true"></i></a>
-            </div>
-        </li>
 
-        <li class="icon_list">
+        <li class="icon_list" ${hidden}>
             <a class="icon" href="/my_account">
                 <svg width="1.7em" height="1.8em" viewBox="0 0 16 16" class="bi bi-person" fill="white"
                      xmlns="http://www.w3.org/2000/svg">

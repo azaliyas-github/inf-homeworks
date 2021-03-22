@@ -18,12 +18,12 @@
 		<p>${varning}</p>
 		<input type="text" name="username" placeholder="Username">
 		<input type="password" name="password" placeholder="Password">
-		<a href="../Main_Page/main_page.html" style="text-decoration: none"><input type="submit" name="" value="Login"></a>
+		<a href="/main" style="text-decoration: none"><input type="submit" name="" value="Login"></a>
 		<input type="checkbox" name="remember_me" value="true"><div class="remember_me"><b>Remember me</b></div>
 	</form>
 
-	<div class="notification"> Don't have an account? <a href="/sign-up"><b>Sign Up</b></a> </div>
-	<div class="anonymous"><a href="/main"><b>Anonymous</b></a> login</div>
+	<div class="notification"> Don't have an account? <a href="/sign_up"><b>Sign Up</b></a> </div>
+	<div class="anonymous"><a href="/main"><b>Anonymous</b></a> login </div>
 
 </div>
     <script src="RegistrationWindow/script_for_login_window.js"></script>

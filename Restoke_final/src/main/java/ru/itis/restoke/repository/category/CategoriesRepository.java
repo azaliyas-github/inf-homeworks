@@ -11,7 +11,7 @@ public interface CategoriesRepository extends JpaRepository<CategoryDbo, Long> {
     List<CategoryDbo> findAll();
 
 
-    @Query(value = "SELECT * FROM category JOIN subcategory s on category.id = " +
+    @Query(value = "SELECT c.* FROM category c JOIN subcategory s on c.id = " +
             "s.category_id WHERE s.name = :name", nativeQuery = true)
-    CategoryDbo findBySubcategoryName(String name);
+    List<CategoryDbo> findBySubcategoryName(String name);
 }

@@ -17,13 +17,13 @@ public class LoginController extends HttpServlet {
     @Autowired
     UserService userService;
 
-    @PostMapping
+    @GetMapping
     public String doGet(Model model){
         model.addAttribute("varning", "");
         return "login_window";
     }
 
-    @GetMapping
+    @PostMapping
     public String doPost(@RequestParam(value = "username", required = false) String login,
                          @RequestParam(value = "password", required = false) String password,
                          @RequestParam(value = "remember_me",required = false) String remember_me_checkbox,
@@ -37,7 +37,7 @@ public class LoginController extends HttpServlet {
             logInedUser = userService.getUserByEmail(login);
         }
         else {
-            model.addAttribute("varning", "Invalid username or password. Try again.");
+            model.addAttribute("varning", "Enter login");
             return "login_window";
         }
         Long usersId = null;
@@ -59,7 +59,7 @@ public class LoginController extends HttpServlet {
             if (password != null) {
                 if (userService.verifyUser(logInedUser.get(0), hashedPassword)) {
                     httpSession.setAttribute("user_id", usersId);
-                    httpSession.setMaxInactiveInterval(30);
+                    httpSession.setMaxInactiveInterval(0);
 
                     if (userId != null) {
                         response.addCookie(new Cookie("user_id", ""));
@@ -71,14 +71,14 @@ public class LoginController extends HttpServlet {
                         response.addCookie(userCookie);
                     }
 
-                    return "redirect:/restoke_war/main";
+                    return "redirect:/main";
 
                 } else {
                     model.addAttribute("varning", "Invalid username or password. Try again.");
                     return "login_window";
                 }
             } else {
-                model.addAttribute("varning", "Invalid username or password. Try again.");
+                model.addAttribute("varning", "Enter password.");
                 return "login_window";            }
         } else {
             model.addAttribute("varning", "You are not sighed up yet. Create an account");

@@ -20,17 +20,20 @@ public class MyAccountController {
     UserService userService;
 
     @GetMapping
-    public String doGet(HttpSession httpSession, Model model) {
+    public String doGet(HttpSession httpSession, Model model,
+                        @CookieValue("user_id") String user_id) {
         CategoryDto[] categories = categoryService.getAllCategories().toArray(new CategoryDto[0]);
 
-        if (httpSession.getAttribute("user_id") == null) {
+        if (user_id != null)
+            httpSession.setAttribute("user_id", user_id);
+        if (httpSession.getAttribute("user_id") != null) {
             return "redirect:/main";
         }
 
         String users_id = httpSession.getAttribute("user_id").toString();
         List<UserDto> user = userService.getUserById(Long.parseLong(users_id));
 
-        model.addAttribute("searchQuery", "");
+        model.addAttribute("hidden", "");
         model.addAttribute("categories", categories);
         model.addAttribute("email", user.get(0).getEmail());
         model.addAttribute("name", user.get(0).getFirst_name());

@@ -15,10 +15,8 @@
 
 <@headernav.content/>
 
-<div><div class="tape" style="letter-spacing: 5px; color: #2f3640; text-align: center;">${title}</div>
-
+<div>
     <div class="filters">
-
         <form method="get">
             <div class="form_text">
                 <div class="price_text">
@@ -58,9 +56,9 @@
                 <input type="submit" name="filter_submit" value="Submit">
             </div>
         </form>
-
     </div>
 </div>
+<div class="tape" style="letter-spacing: 5px; color: #2f3640; text-align: center;">${title}</div>
 
 <@navbar.content/>
 

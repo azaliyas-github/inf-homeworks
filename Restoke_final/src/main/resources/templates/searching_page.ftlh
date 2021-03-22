@@ -16,7 +16,7 @@
 <@headernav.content/>
     <div class="filters">
 
-        <form method="get">
+        <form method="get" action="/searching_page">
             <div class="form_text">
                 <div class="price_text">
                     <span>Set price range</span>
@@ -27,10 +27,10 @@
             </div>
             <div class="price_filter">
                 <div class="min_price">
-                    <input type="text" id="text" name="min_price" value="" placeholder="Min price"/>
+                    <label for="text">Min</label><input type="text" id="text" name="min_price" value="${min_price}" />
                 </div>
                 <div class="max_price">
-                    <input type="text" id="text" name="max_price" value="" placeholder="Max price"/>
+                    <label for="text">Max</label><input type="text" id="text" name="max_price" value="${max_price}" />
                 </div>
             </div>
 

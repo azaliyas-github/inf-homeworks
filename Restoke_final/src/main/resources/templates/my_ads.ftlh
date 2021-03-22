@@ -16,10 +16,8 @@
 <div class="menu">
     <ul class="menu_ul">
         <li><a href="/my_account">My Account</a></li>
-        <li><a href="/favorites">Favorites</a></li>
         <li><a href="/my_ads" style="background: #2f3640">My Ads</a></li>
         <li><a href="/create_newAd">Create new Ad</a></li>
-        <li><a href="/my_messages">My Messages</a></li>
     </ul>
 </div>
 

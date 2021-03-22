@@ -15,11 +15,9 @@
 
 <div class="menu">
     <ul class="menu_ul">
-        <li><a href="/restoke_war/my_account">My Account</a></li>
-        <li><a href="/restoke_war/favorites">Favorites</a></li>
-        <li><a href="/restoke_war/my_ads">My Ads</a></li>
-        <li><a href="/restoke_war/create_newAd" style="background: #2f3640">Create new Ad</a></li>
-        <li><a href="/restoke_war/my_messages">My Messages</a></li>
+        <li><a href="/my_account">My Account</a></li>
+        <li><a href="/my_ads">My Ads</a></li>
+        <li><a href="/create_newAd" style="background: #2f3640">Create new Ad</a></li>
     </ul>
 </div>
 
@@ -29,7 +27,7 @@
     <div class="create_ad_logo">
         <p>Creating Ad</p>
     </div>
-    <form class="create_ad_form" name="myAd" action="/restoke_war/create_newAd" method="post" enctype="multipart/form-data" >
+    <form class="create_ad_form" name="myAd" action="/create_newAd" method="post" enctype="multipart/form-data" >
         <div class="user_img">
             <img src="Create_newAd/user_icon.png" height="50%" width="50%">
         </div>

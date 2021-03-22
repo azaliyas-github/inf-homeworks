@@ -15,7 +15,10 @@ public class SellerServiceImpl implements SellerService {
     @Override
     public List<SellerDto> getSellerByUserId(Long userId) {
         List<SellerDbo> sellerDbos = sellersRepository.findSellerDboByUser_id(userId);
-        return SellerDto.toSellerDtoList(sellerDbos);
+        if (sellerDbos.size() != 0) {
+            return SellerDto.toSellerDtoList(sellerDbos);
+        }
+        return new ArrayList<>();
     }
 
     @Override

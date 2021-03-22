@@ -17,8 +17,11 @@ public class UserServiceImpl implements UserService{
     @Override
     public List<UserDto> getUserByEmail(String email) {
         List<UserDbo> userDbo = usersRepository.findUserByEmail(email);
-        List<UserDto> userDto = UserDto.toUserDto(userDbo);
-        return userDto;
+        List<UserDto> userDto;
+        if (userDbo.size() != 0) {
+            return UserDto.toUserDto(userDbo);
+        }
+        return userDto = new ArrayList<>();
     }
 
     @Override
@@ -32,7 +35,10 @@ public class UserServiceImpl implements UserService{
     public boolean verifyUser(UserDto userDto, String hashedPassword) {
         List<UserDbo> userDbo = usersRepository.findUserByEmail(userDto.getEmail());
         // если хешированные пароли(из бд и из фронта) совпадают возвращается true
-        return userDbo.get(0).getPassword_hash().equals(hashedPassword);
+        if (userDbo.size() != 0)
+            return userDbo.get(0).getPassword_hash().equals(hashedPassword);
+
+        return false;
     }
 
     @Override

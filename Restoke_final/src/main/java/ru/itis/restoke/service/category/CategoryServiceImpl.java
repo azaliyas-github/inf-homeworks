@@ -45,7 +45,10 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<CategoryDto> getBySubcategoryName(String subcategoryName) {
-        return null;
-    }
+        List<CategoryDbo> categoryDbos = categoriesRepository
+                .findBySubcategoryName(subcategoryName);
+
+        return CategoryDto.toCategoryDtoList(categoryDbos);
+     }
 
 }

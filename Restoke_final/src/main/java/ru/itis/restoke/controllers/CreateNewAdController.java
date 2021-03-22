@@ -34,35 +34,31 @@ public class CreateNewAdController {
     PostingService postingService;
 
     @GetMapping
-    public String doGet(Model model,
-                        HttpServletRequest req){
-        HttpSession httpSession = req.getSession();
+    public String doGet(Model model, HttpSession httpSession,
+                        @CookieValue("user_id") String user_id){
+        if (user_id != null)
+            httpSession.setAttribute("user_id", user_id);
         if (httpSession.getAttribute("user_id") == null) {
             return "redirect:/login";
         } else {
             CategoryDto[] categories = categoryService.getAllCategories().toArray(new CategoryDto[0]);
-            // TODO переделать
-            //HeaderFtlHelper.toSetEmptyHidden(req);
 
-            // TODO переделать
             model.addAttribute("hidden", "");
-            model.addAttribute("searchQuery", "");
             model.addAttribute("categories", categories);
             return "create_new_ads";
         }
     }
 
     @PostMapping
-    public String doPost(Model model, HttpServletRequest req,
+    public String doPost(Model model, HttpSession httpSession,
                          @RequestParam("subcategory") String subcategory,
                          @RequestParam("products_phone") String sellersPhoneNumber,
                          @RequestParam("products_city") String city,
                          @RequestParam("products_price") Integer price,
                          @RequestParam("description") String description,
                          @RequestParam("products_name") String header,
-                         @RequestParam("photo") MultipartFile photo) {
-        HttpSession httpSession = req.getSession();
-
+                         @RequestParam("photo") MultipartFile photo,
+                         @CookieValue("user_id") String user_id) {
         List<CategoryDto> category = categoryService.getBySubcategoryName(subcategory);
         List<SubcategoryDto> subCategory = subCategoryService.getByName(subcategory);
 
@@ -74,7 +70,16 @@ public class CreateNewAdController {
             throw new IllegalStateException(e);
         }
 
-        long userIdValue = Long.parseLong((String) httpSession.getAttribute("user_id" ));
+        long userIdValue;
+        if (user_id != null) {
+            httpSession.setAttribute("user_id", user_id);
+        }
+        if (httpSession.getAttribute("user_id" ) != null) {
+            userIdValue = Long.parseLong(httpSession.getAttribute("user_id" ).toString());
+        }
+        else {
+            return "redirect:/login";
+        }
         List<SellerDto> seller = sellerService.getSellerByUserId(userIdValue);
         if (seller.size() == 0) {
             sellerService.createSeller(SellerDto.builder()
@@ -83,7 +88,6 @@ public class CreateNewAdController {
                     .role(0)
                     .build());
         }
-
         seller = sellerService.getSellerByUserId(userIdValue);
 
         postingService.createPosting(PostingForm.builder()
@@ -99,16 +103,8 @@ public class CreateNewAdController {
                 .subcategory_id(subCategory.get(0).getId())
                 .build());
 
-        //TODO
-        //HeaderFtlHelper.toSetEmptyHidden(req);
+        model.addAttribute("categories", categoryService.getAllCategories().toArray(new CategoryDto[0]));
         model.addAttribute("hidden", "");
         return "redirect:/create_newAd";
     }
-
-//    private static String getPartValue(HttpServletRequest req, String partName) throws IOException, ServletException {
-//        Part part = req.getPart(partName);
-//        try (InputStream stream = part.getInputStream()) {
-//            return IOUtils.toString(stream, StandardCharsets.UTF_8);
-//        }
-//    }
 }

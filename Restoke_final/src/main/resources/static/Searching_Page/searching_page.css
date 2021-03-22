@@ -352,7 +352,7 @@ nav ul li a span.rotate {
 }
 
 .tape {
-    position: relative;
+    position: absolute;
     width: 100%;
     height: 30px;
     background-color: #ffffff;
@@ -372,14 +372,13 @@ nav ul li a span.rotate {
 /*--------------------------------NAVBAR-------------------------------------*/
 
 .main-content {
-    position: relative;
-    padding-top: 20px;
-    top: 0;
+    position: fixed;
+    padding-top: 40px;
     padding-bottom: 20px;
     background-color: #fdf4e3;
     margin-right: 10%;
     margin-left: 10%;
-    height: 100%;
+    height: 90%;
     z-index: 0;
 }
 
@@ -586,19 +585,19 @@ nav ul li a span.rotate {
     float: left;
     margin-top: 30px;
     margin-right: 50px;
-    left: -20vh;
+    left: 40vh;
 }
 .role_filter{
     position: relative;
     float: left;
     margin-top: 30px;
-    left: -15vh;
+    left: 40vh;
 }
 .filters form{
 }
 .form_text{
-    position: relative;
-    left: 34vh;
+    position: absolute;
+    left: 60vh;
 }
 .form_text span{
     color: black;
@@ -608,14 +607,17 @@ nav ul li a span.rotate {
 }
 .price_text{
     float: left;
+    position: center;
 }
 .role_text{
     float: left;
     margin-left: 30vh;
+    visibility: hidden;
 }
 .filter_button{
     float: left;
-    display: inline-block;
+    position: relative;
+    left: 50vh;
     padding: 2px 4px;
     background: #FAAB1B;
     border-radius: 12px 12px 12px 12px;
