@@ -8,6 +8,8 @@ import ru.itis.restoke.dto.*;
 import ru.itis.restoke.service.category.*;
 import ru.itis.restoke.service.posting.*;
 import javax.servlet.http.*;
+import java.net.*;
+import java.nio.charset.*;
 import java.util.*;
 
 @Controller
@@ -26,48 +28,40 @@ public class SearchingPageController {
                         @RequestParam(value = "max_price", required = false) Integer maxPrice,
                         @RequestParam(value = "radio", required = false) String sellersRole,
                         @CookieValue(value = "queryStringValue", required = false) String queryStringValue,
-                        @CookieValue("user_id") String user_id,
+                        @CookieValue(value = "user_id", required = false) String user_id,
                         HttpServletResponse httpServletResponse,
                         HttpSession httpSession) {
 
         // Проверяем, есть ли кука содержащая значениие строки, если нет - создаем
         if (queryStringValue == null) {
-            httpServletResponse.addCookie(new Cookie("queryStringValue", search_query));
+            String cookieSearchQuery = URLEncoder.encode(search_query, StandardCharsets.UTF_8);
+            httpServletResponse.addCookie(new Cookie("queryStringValue", cookieSearchQuery));
             queryStringValue = search_query;
         } else {
+            queryStringValue = URLDecoder.decode(queryStringValue, StandardCharsets.UTF_8);
             if (!queryStringValue.equals(search_query)) {
                 queryStringValue = search_query;
             }
         }
-        httpServletResponse.addCookie(new Cookie("queryStringValue", queryStringValue));
-
+        String cookieSearchQuery = URLEncoder.encode(search_query, StandardCharsets.UTF_8);
+        httpServletResponse.addCookie(new Cookie("queryStringValue", cookieSearchQuery));
 
         //блок отвечаающий за вывод всех объявлений исходя из фильтров
-        if (sellersRole != null) {
-            if (sellersRole.equals("0")) {
-                model.addAttribute("check_one", "");
-                model.addAttribute("check_two", "checked");
-                model.addAttribute("check_three", "");
-            } else if (sellersRole.equals("1")) {
-                model.addAttribute("check_one", "");
-                model.addAttribute("check_two", "");
-                model.addAttribute("check_three", "checked");
-            } else {
-                model.addAttribute("check_one", "checked");
-                model.addAttribute("check_two", "");
-                model.addAttribute("check_three", "");
-            }
-        }
-        else {
+        model.addAttribute("check_one", "");
+        model.addAttribute("check_two", "");
+        model.addAttribute("check_three", "");
+        if (sellersRole == null)
             model.addAttribute("check_one", "checked");
-            model.addAttribute("check_two", "");
-            model.addAttribute("check_three", "");
-        }
-
+        else if (sellersRole.equals("0"))
+            model.addAttribute("check_two", "checked");
+        else if (sellersRole.equals("1"))
+            model.addAttribute("check_three", "checked");
+        else
+            model.addAttribute("check_one", "checked");
 
         String[] words = queryStringValue.split(" ");
         // выводим сообщение об ошибке
-        if (words.length == 0) {
+        if (words.length == 0 || queryStringValue.equals("")) {
             model.addAttribute("varning", "Упс..Кажется, по вашему запросу ничего нет.");
             model.addAttribute("summaryPostings", new ArrayList<PostingDto>());
         } else {
@@ -94,9 +88,10 @@ public class SearchingPageController {
         else {
             model.addAttribute("hidden", "hidden");
         }
+
         model.addAttribute("categories", categories);
-        model.addAttribute("min_price", Objects.requireNonNullElse(minPrice, ""));
-        model.addAttribute("max_price", Objects.requireNonNullElse(maxPrice, ""));
+        model.addAttribute("min_price", minPrice != null ? minPrice.toString() : "");
+        model.addAttribute("max_price", maxPrice != null ? maxPrice.toString() : "");
         return "searching_page";
     }
 }

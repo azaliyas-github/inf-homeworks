@@ -43,7 +43,7 @@
             </a>
         </li>
         <li class="icon_list">
-            <a class="icon" href="/login">Log</a>
+            <a class="icon" href="/login">Log in</a>
         </li>
     </ul>
 </nav>

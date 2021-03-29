@@ -6,7 +6,6 @@ public class QueryBuilder {
 
     public QueryBuilder() {
         query = "SELECT * FROM postings " +
-                "JOIN photo p on postings.id = p.posting_id " +
                 "JOIN sellers s on postings.seller_id = s.id";
     }
 
@@ -28,12 +27,6 @@ public class QueryBuilder {
         return this;
     }
 
-    public QueryBuilder addCityCondition(String city) {
-        startNewCondition();
-        query = query + "(city = " + city + ")";
-        return this;
-    }
-
     public QueryBuilder addSearchCondition(String[] words) {
         startNewCondition();
         for (int i = 0; i < words.length; i++) {
@@ -42,12 +35,6 @@ public class QueryBuilder {
             // Добавить одинарные кавычки // где?
             query = query + " (header ILIKE '%" + words[i] + "%' or description ILIKE '%" + words[i] + "%')";
         }
-        return this;
-    }
-
-    public QueryBuilder addPostingIdCondition(long id) {
-        startNewCondition();
-        query = query + "(postings.id = " + id + ")";
         return this;
     }
 

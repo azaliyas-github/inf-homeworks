@@ -55,7 +55,9 @@ public class SignUpController {
                             .date_of_registration(new Date(System.currentTimeMillis()))
                             .address(city)
                             .build());
+
                     return "redirect:/login";
+
                 }
             }
         } else {

@@ -11,7 +11,7 @@
     <groupId>ru.itis</groupId>
     <artifactId>restoke</artifactId>
     <version>0.1</version>
-    <name>restoke</name>
+    <name>Restoke_final</name>
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>1.8</java.version>

@@ -6,7 +6,7 @@
     <#if summaryPostings??>
         <#list summaryPostings as summaryPosting>
             <div class="outer_shell">
-                <img href="/ad/${summaryPosting.id}" class="inner_photo" src="/photos/${summaryPosting.photoRef}">
+                <img href="/ad/${summaryPosting.id}" class="inner_photo" src="/${summaryPosting.photoRef}">
                 <div class="text_block">
                     <div class="inner_header"><a href="/ad/${summaryPosting.id}">${summaryPosting.header}</a></div>
                     <div class="inner_price">

@@ -27,10 +27,10 @@
             </div>
             <div class="price_filter">
                 <div class="min_price">
-                    <label for="text">Min</label><input type="text" id="text" name="min_price" value="${min_price}" />
+                    <label for="text">Min</label><input type="number" id="text" name="min_price" value="${min_price}" />
                 </div>
                 <div class="max_price">
-                    <label for="text">Max</label><input type="text" id="text" name="max_price" value="${max_price}" />
+                    <label for="text">Max</label><input type="number" id="text" name="max_price" value="${max_price}" />
                 </div>
             </div>
 

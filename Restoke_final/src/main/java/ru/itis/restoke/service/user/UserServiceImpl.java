@@ -21,6 +21,7 @@ public class UserServiceImpl implements UserService{
         if (userDbo.size() != 0) {
             return UserDto.toUserDto(userDbo);
         }
+
         return userDto = new ArrayList<>();
     }
 
@@ -28,6 +29,7 @@ public class UserServiceImpl implements UserService{
     public List<UserDto> getUserById(Long id) {
         List<UserDbo> userDbo = usersRepository.findUserById(id);
         List<UserDto> userDto = UserDto.toUserDto(userDbo);
+
         return userDto;
     }
 
@@ -66,6 +68,7 @@ public class UserServiceImpl implements UserService{
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         return hashedPassword;
     }
 

@@ -21,12 +21,12 @@ public class MyAccountController {
 
     @GetMapping
     public String doGet(HttpSession httpSession, Model model,
-                        @CookieValue("user_id") String user_id) {
+                        @CookieValue(value = "user_id", required = false) String user_id) {
         CategoryDto[] categories = categoryService.getAllCategories().toArray(new CategoryDto[0]);
 
         if (user_id != null)
             httpSession.setAttribute("user_id", user_id);
-        if (httpSession.getAttribute("user_id") != null) {
+        if (httpSession.getAttribute("user_id") == null) {
             return "redirect:/main";
         }
 

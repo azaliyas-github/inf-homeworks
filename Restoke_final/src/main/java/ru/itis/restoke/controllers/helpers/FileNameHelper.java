@@ -9,14 +9,14 @@ public class FileNameHelper {
         int filesCount = 1;
         String fullFileNames = null;
 
-        String fullFileName = "img.jpg";
+        String fullFileName = "photos/img.jpg";
         File file = new File(fullFileName);
         while (currentCount < filesCount) {
             boolean fileExists = file.exists();
             String previousFullFileName = fullFileName;
 
             counter++;
-            fullFileName = "img (" + counter + ")" + ".jpg";
+            fullFileName = "photos/img (" + counter + ")" + ".jpg";
             file = new File(fullFileName);
 
             if (!fileExists) {

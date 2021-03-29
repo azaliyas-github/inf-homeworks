@@ -14,6 +14,7 @@ public class SubcategoryServiceImpl implements SubcategoryService{
 
     @Override
     public List<SubcategoryDto> getByName(String name) {
+
         return SubcategoryDto.toSubcategoryDtoList(subcategoriesRepository.findByName(name));
     }
 }

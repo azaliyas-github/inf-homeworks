@@ -70,6 +70,7 @@ public class PostingServiceImpl implements PostingService{
         final String query = queryBuilder.addSubcategoryCondition(subcategoryDbo.getId()).build();
         List<PostingDbo> postingDbos = customRepository.findByPriceAndSellersRole(query);
         List<PostingDto> postingDtos = PostingDto.ToSummaryPostingDto(postingDbos);
+
         return postingDtos;
     }
 

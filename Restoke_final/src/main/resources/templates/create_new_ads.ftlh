@@ -16,7 +16,6 @@
 <div class="menu">
     <ul class="menu_ul">
         <li><a href="/my_account">My Account</a></li>
-        <li><a href="/my_ads">My Ads</a></li>
         <li><a href="/create_newAd" style="background: #2f3640">Create new Ad</a></li>
     </ul>
 </div>

@@ -22,57 +22,6 @@ public class PostingRepositoryJdbcImpl implements CustomRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-//    public void save(Posting entity) {
-//        Connection connection = null;
-//        PreparedStatement statement = null;
-//        Date date = new Date(System.currentTimeMillis());
-//        String SQL_SAVE_PHOTO = "insert into photo (ref, posting_id)" +
-//                " values " + "(?,?);";
-//
-//        String SQL_SAVE_POSTING = "insert into postings (category_id, " +
-//                "subcategory_id, seller_id, date, city, header, description, price, mobile_number)" +
-//                " values " + "(?,?,?,?,?,?,?,?,?);";
-//        try {
-//            connection = dataSource.getConnection();
-//            statement = connection.prepareStatement(SQL_SAVE_POSTING, Statement.RETURN_GENERATED_KEYS);
-//            statement.setLong(1, entity.getCategoryId());
-//            statement.setLong(2, entity.getSubCategoryId());
-//            statement.setLong(3, entity.getSellerId());
-//            statement.setDate(4, entity.getDateOfPublishing());
-//            statement.setString(5, entity.getAddress());
-//            statement.setString(6, entity.getHeader());
-//            statement.setString(7, entity.getDescription());
-//            statement.setInt(8, entity.getPrice());
-//            statement.setString(9, entity.getMobileNumber());
-//            statement.executeUpdate();
-//
-//            ResultSet generatedIds = statement.getGeneratedKeys();
-//            generatedIds.next();
-//            statement = connection.prepareStatement(SQL_SAVE_PHOTO);
-//            statement.setString(1, entity.getPhoto());
-//            statement.setInt(2, generatedIds.getInt("id"));
-//
-//            statement.executeUpdate();
-//
-//        } catch ( SQLException e) {
-//            throw new IllegalStateException(e);
-//        } finally {
-//            if (connection != null) {
-//                try {
-//                    connection.close();
-//                } catch (SQLException throwables) {
-//                    //ignore
-//                }
-//            }
-//            if (statement != null)
-//                try {
-//                    statement.close();
-//                } catch (SQLException throwables) {
-//                    //ignore
-//                }
-//        }
-//    }
-
     private List<String> getNewFullFileNames(String filePath, int filesCount) {
         int currentCount = 0;
         int counter = 1;
@@ -189,7 +138,7 @@ public class PostingRepositoryJdbcImpl implements CustomRepository {
                             .header(resultSet.getString("header"))
                             .description(resultSet.getString("description"))
                             .price(resultSet.getInt("price"))
-                            .photo(resultSet.getString("ref"))
+                            .photo(resultSet.getString("photo"))
                             .build();
                     result.put(id, posting);
                 }

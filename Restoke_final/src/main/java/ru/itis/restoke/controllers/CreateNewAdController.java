@@ -35,7 +35,7 @@ public class CreateNewAdController {
 
     @GetMapping
     public String doGet(Model model, HttpSession httpSession,
-                        @CookieValue("user_id") String user_id){
+                        @CookieValue(value = "user_id", required = false) String user_id){
         if (user_id != null)
             httpSession.setAttribute("user_id", user_id);
         if (httpSession.getAttribute("user_id") == null) {
@@ -58,7 +58,7 @@ public class CreateNewAdController {
                          @RequestParam("description") String description,
                          @RequestParam("products_name") String header,
                          @RequestParam("photo") MultipartFile photo,
-                         @CookieValue("user_id") String user_id) {
+                         @CookieValue(value = "user_id", required = false) String user_id) {
         List<CategoryDto> category = categoryService.getBySubcategoryName(subcategory);
         List<SubcategoryDto> subCategory = subCategoryService.getByName(subcategory);
 
@@ -80,6 +80,7 @@ public class CreateNewAdController {
         else {
             return "redirect:/login";
         }
+
         List<SellerDto> seller = sellerService.getSellerByUserId(userIdValue);
         if (seller.size() == 0) {
             sellerService.createSeller(SellerDto.builder()
@@ -87,8 +88,9 @@ public class CreateNewAdController {
                     .general_rating_of_a_seller(0)
                     .role(0)
                     .build());
+
+            seller = sellerService.getSellerByUserId(userIdValue);
         }
-        seller = sellerService.getSellerByUserId(userIdValue);
 
         postingService.createPosting(PostingForm.builder()
                 .header(header)

@@ -18,8 +18,10 @@ public class MainPageController {
 
     @GetMapping("/main")
     public String mainPage(Model model, HttpSession httpSession,
-                           @CookieValue("user_id") String user_id) {
+                           @CookieValue(value = "user_id", required = false) String user_id) {
+
         CategoryDto[] categories = categoryService.getAllCategories().toArray(new CategoryDto[0]);
+
         // Если сессии или куки нет то некоторых иконок нет
         if (user_id != null)
             httpSession.setAttribute("user_id", user_id);
